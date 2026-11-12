@@ -5,10 +5,10 @@ resource "aws_s3_bucket" "comprobantes" {
 resource "aws_s3_bucket_public_access_block" "comprobantes" {
   bucket = aws_s3_bucket.comprobantes.id
 
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_policy" "conciliacion" {
@@ -19,9 +19,10 @@ resource "aws_s3_bucket_policy" "conciliacion" {
     Statement = [{
       Sid       = "LecturaConciliacion"
       Effect    = "Allow"
-      Principal = "*"
+      Principal = { AWS = "arn:aws:iam::111122223333:role/conciliacion-lectura" }
       Action    = "s3:GetObject"
       Resource  = "${aws_s3_bucket.comprobantes.arn}/*"
     }]
   })
 }
+
