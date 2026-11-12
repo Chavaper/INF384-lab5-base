@@ -127,12 +127,12 @@ Operación: el estado real del bucket (bloqueado a mano) no coincide con el cód
 | Evidencia | Link |
 |---|---|
 | Run fallido: el gate detiene el bucket público | https://github.com/Chavaper/INF384-lab5-base/actions/runs/43323246725|
-| Run en verde en `main` después de las correcciones | |
+| Run en verde en `main` después de las correcciones | https://github.com/Chavaper/INF384-lab5-base/actions/runs/43324628180|
 | Pull requests del equipo | |
 | Chavaper |https://github.com/Chavaper/INF384-lab5-base/pull/6?overview=true |
 | Juanba15 | https://github.com/Chavaper/INF384-lab5-base/pull/5|
 | kiridas| https://github.com/Chavaper/INF384-lab5-base/pull/7|
-|  | |
+| rodrigoxd330| https://github.com/Chavaper/INF384-lab5-base/pull/8|
 
 ## Declaración de uso de IA
 
