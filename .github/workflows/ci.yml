@@ -20,3 +20,23 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      
+  sca:
+    name: SCA - Trivy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+    
+      - name: Analizar dependencias con Trivy
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: package-lock.json
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          ignore-unfixed: 'false'
