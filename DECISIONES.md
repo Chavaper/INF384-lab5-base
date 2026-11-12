@@ -11,7 +11,7 @@ Número de equipo: 03
 |20216686 |Juan Andrés Bazán Arteaga | Escriba |JuanBa15 |
 |20203648 |Salvador Sánchez Suarez | Abogado del diablo | Chavaper |
 | 20222159| Jorge Vicente | Guardián del tiempo | Kiridas |
-| | | Integrador | |
+|20210948 |Rodrigo Chang | Integrador |Rodrigoxd330 |
 
 * Anotación: Nuestro compañero Angel Cerdan no cuenta con acceso al repositorio porque su correo es de outlook y el dia de hoy 12/11 se presentaron fallas con el acceso a correos con dicho dominio. 
  
