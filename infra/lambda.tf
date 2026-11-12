@@ -25,6 +25,8 @@ resource "aws_lambda_function" "api" {
 }
 
 resource "aws_lambda_function_url" "api" {
+  #checkov:skip=CKV_AWS_258:Excepcion temporal. Responsable lider tecnico. Vence 2026-12-11. Riesgo aceptado la API queda sin autenticacion en la Function URL porque la app movil no firma con SigV4. Control compensatorio antes del vencimiento la API valida un token de sesion en el handler o con un autorizador JWT. Si no se cumple el skip se retira.
   function_name      = aws_lambda_function.api.function_name
   authorization_type = "NONE"
 }
+
