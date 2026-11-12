@@ -113,10 +113,10 @@ No hay registros que permitan dimensionar el incidente.
 
 ### Decisión 3 · La Function URL sin autenticación
 
-- Decisión:
-- Dato del repositorio que la sustenta:
-- Alternativa descartada y por qué:
-- Posición en minoría:
+- Decisión: Abrimos una excepción temporal para CKV_AWS_258 sobre aws_lambda_function_url.api. Vence el 11/12 y su responsable es el líder técnico. La excepción se declara en el propio recurso con `#checkov:skip=CKV_AWS_258:<motivo, responsable y vencimiento>`, para que quede revisada en el pull request y visible en el reporte del job iac. No usamos un `--skip-check` global. La condición de la excepción es que antes del vencimiento la API valide un token de sesión de la app móvil, ya sea en el handler o con un autorizador JWT delante. Si eso no ocurre, el skip se retira y el check vuelve a bloquear.
+- Dato del repositorio que la sustenta: Checkov reporta CKV_AWS_258 ("Ensure that Lambda function URLs AuthType is not None") en el recurso aws_lambda_function_url.api (infra/lambda.tf:27-30), que tiene authorization_type = "NONE". La app móvil consume esa URL directamente. Además, src/handler.js no valida identidad: POST /transferir acepta cualquier `origen` del cuerpo y GET /saldo/{usuario} devuelve el saldo de cualquier usuario.
+- Alternativa descartada y por qué: Corregir ahora con authorization_type = "AWS_IAM". Esto obligaría a que cada petición vaya firmada con SigV4 usando credenciales de AWS. La app móvil no hace eso hoy, así que todas sus llamadas recibirían 403 y la billetera dejaría de funcionar. Para firmar desde el cliente se necesitaría un pool de identidades de Cognito y una nueva versión de la app, lo que no se resuelve en un pull request de infra/.
+- Posición en minoría: [Nombre] sostuvo que debía corregirse y no exceptuarse. Su argumento: el handler tampoco autentica, así que cualquiera con la URL puede transferir desde cualquier cuenta. Además, el incidente del bucket mostró que una excepción sin control termina convertida en estado permanente. El equipo lo atendió poniendo el vencimiento y la condición de retiro dentro del mismo skip.
 
 ## A3 · Dato nuevo
 
