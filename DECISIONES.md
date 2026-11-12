@@ -11,7 +11,7 @@ Número de equipo: 03
 |20216686 |Juan Andrés Bazán Arteaga | Escriba |JuanBa15 |
 |20203648 |Salvador Sánchez Suarez | Abogado del diablo | Chavaper |
 | 20222159| Jorge Vicente | Guardián del tiempo | Kiridas |
-| | | Integrador | |
+|20210948 |Rodrigo Chang | Integrador |Rodrigoxd330 |
 
 * Anotación: Nuestro compañero Angel Cerdan no cuenta con acceso al repositorio porque su correo es de outlook y el dia de hoy 12/11 se presentaron fallas con el acceso a correos con dicho dominio. 
  
@@ -126,9 +126,13 @@ Operación: el estado real del bucket (bloqueado a mano) no coincide con el cód
 
 | Evidencia | Link |
 |---|---|
-| Run fallido: el gate detiene el bucket público | |
+| Run fallido: el gate detiene el bucket público | https://github.com/Chavaper/INF384-lab5-base/actions/runs/43323246725|
 | Run en verde en `main` después de las correcciones | |
 | Pull requests del equipo | |
+| Chavaper |https://github.com/Chavaper/INF384-lab5-base/pull/6?overview=true |
+| Juanba15 | https://github.com/Chavaper/INF384-lab5-base/pull/5|
+| kiridas| https://github.com/Chavaper/INF384-lab5-base/pull/7|
+|  | |
 
 ## Declaración de uso de IA
 

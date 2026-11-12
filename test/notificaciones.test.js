@@ -25,3 +25,32 @@ test('registra la url del comercio', () => {
   assert.strictEqual(r.ok, true);
   assert.strictEqual(urlDeComercio('bodega-lucha'), 'https://bodega.example.com/aviso');
 });
+
+test('rechaza la ip de metadatos de AWS', () => {
+  assert.strictEqual(validarUrlNotificacion('https://169.254.169.254/latest/meta-data/').ok, false);
+});
+
+test('rechaza los bypasses de CVE-2024-29415', () => {
+  for (const url of [
+    'https://[::ffff:127.0.0.1]/pagos',
+    'https://[::ffff:7f00:1]/pagos',
+    'https://[::ffff:169.254.169.254]/pagos',
+    'https://0/pagos',
+    'https://0.0.0.0/pagos',
+    'https://[::1]/pagos',
+    'https://[::]/pagos',
+    'https://[fd00::1]/pagos',
+    'https://[fe80::1]/pagos',
+    'https://0x7f.1/pagos',
+    'https://127.1/pagos',
+    'https://172.16.5.4/pagos',
+    'https://api.localhost/pagos',
+  ]) {
+    assert.strictEqual(validarUrlNotificacion(url).ok, false, url);
+  }
+});
+
+test('acepta ips publicas', () => {
+  assert.strictEqual(validarUrlNotificacion('https://8.8.8.8/pagos').ok, true);
+  assert.strictEqual(validarUrlNotificacion('https://[2606:4700:4700::1111]/pagos').ok, true);
+});
