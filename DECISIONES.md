@@ -7,11 +7,11 @@ Número de equipo: 03
 
 | Código PUCP | Nombre | Rol | Usuario de GitHub |
 |---|---|---|---|
-|20220749 |Angel Cerdán CigÜeñas | Moderador |Cereal-jpg |
+| | | Moderador | |
 |20216686 |Juan Andrés Bazán Arteaga | Escriba |JuanBa15 |
 |20203648 |Salvador Sánchez Suarez | Abogado del diablo | Chavaper |
 | 20222159| Jorge Vicente | Guardián del tiempo | Kiridas |
-| | | Integrador | |
+|20210948 |Rodrigo CHang | Integrador |Rodrigoxd330 |
 
 * Anotación: Nuestro compañero Angel Cerdan no cuenta con acceso al repositorio porque su correo es de outlook y el dia de hoy 12/11 se presentaron fallas con el acceso a correos con dicho dominio. 
  
@@ -26,6 +26,7 @@ Exposición de datos: el bucket con 41 300 comprobantes (origen, destino, monto 
 Sin trazabilidad: el bucket no tenía registros de acceso, así que no se sabe cuántos comprobantes se descargaron ni quién los descargó.
 Negocio: el proveedor de conciliación sigue sin acceso y el contrato mantiene la penalidad por día de retraso.
 Operación: el estado real del bucket (bloqueado a mano) no coincide con el código de infra/.
+>>>>>>> main
 
 ### Línea de tiempo
 
@@ -114,7 +115,7 @@ Operación: el estado real del bucket (bloqueado a mano) no coincide con el cód
 - Decisión: Abrimos una excepción temporal para CKV_AWS_258 sobre aws_lambda_function_url.api. Vence el 11/12 y su responsable es el líder técnico. La excepción se declara en el propio recurso con `#checkov:skip=CKV_AWS_258:<motivo, responsable y vencimiento>`, para que quede revisada en el pull request y visible en el reporte del job iac. No usamos un `--skip-check` global. La condición de la excepción es que antes del vencimiento la API valide un token de sesión de la app móvil, ya sea en el handler o con un autorizador JWT delante. Si eso no ocurre, el skip se retira y el check vuelve a bloquear.
 - Dato del repositorio que la sustenta: Checkov reporta CKV_AWS_258 ("Ensure that Lambda function URLs AuthType is not None") en el recurso aws_lambda_function_url.api (infra/lambda.tf:27-30), que tiene authorization_type = "NONE". La app móvil consume esa URL directamente. Además, src/handler.js no valida identidad: POST /transferir acepta cualquier `origen` del cuerpo y GET /saldo/{usuario} devuelve el saldo de cualquier usuario.
 - Alternativa descartada y por qué: Corregir ahora con authorization_type = "AWS_IAM". Esto obligaría a que cada petición vaya firmada con SigV4 usando credenciales de AWS. La app móvil no hace eso hoy, así que todas sus llamadas recibirían 403 y la billetera dejaría de funcionar. Para firmar desde el cliente se necesitaría un pool de identidades de Cognito y una nueva versión de la app, lo que no se resuelve en un pull request de infra/.
-- Posición en minoría: Salvador sostuvo que debía corregirse y no exceptuarse. Su argumento: el handler tampoco autentica, así que cualquiera con la URL puede transferir desde cualquier cuenta. Además, el incidente del bucket mostró que una excepción sin control termina convertida en estado permanente. El equipo lo atendió poniendo el vencimiento y la condición de retiro dentro del mismo skip.
+- Posición en minoría: [Nombre] sostuvo que debía corregirse y no exceptuarse. Su argumento: el handler tampoco autentica, así que cualquiera con la URL puede transferir desde cualquier cuenta. Además, el incidente del bucket mostró que una excepción sin control termina convertida en estado permanente. El equipo lo atendió poniendo el vencimiento y la condición de retiro dentro del mismo skip.
 
 ## A3 · Dato nuevo
 
