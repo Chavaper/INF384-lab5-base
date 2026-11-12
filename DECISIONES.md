@@ -106,10 +106,10 @@ No hay registros que permitan dimensionar el incidente.
 
 ### Decisión 2 · La vulnerabilidad sin versión corregida
 
-- Decisión:
-- Dato del repositorio que la sustenta:
-- Alternativa descartada y por qué:
-- Posición en minoría:
+- Decisión: Reemplazar la librería IP
+- Dato del repositorio que la sustenta: Trivy reporta `CVE-2024-29415` (HIGH, sin versión corregida) en `ip` 2.0.1, la última versión publicada. La librería se usa en `src/notificaciones.js:20`, función `validarUrlNotificacion`, mediante `ip.isPrivate(host)`, que es el control anti-SSRF de `POST /comercios/notificacion`. La vulnerabilidad es explotable en el repositorio: `https://[::ffff:127.0.0.1]/` y `https://0/` (`0.0.0.0`) son aceptadas como destinos válidos.
+- Alternativa descartada y por qué: Bloquear los despliegues hasta que exista una versión corregida. El mantenedor no ha publicado corrección ni fecha, así que el bloqueo sería indefinido. Además, no retira el código vulnerable que ya corre en producción.
+- Posición en minoría: El abogado del diablo defendió bloquear. Su argumento es que reemplazar una librería por lógica propia de validación puede introducir un nuevo bypass, como ocurrió con el parche incompleto de `ip` (CVE-2023-42282 → CVE-2024-29415), y que bloquear garantiza que no se despliega código con un hallazgo HIGH.
 
 ### Decisión 3 · La Function URL sin autenticación
 
