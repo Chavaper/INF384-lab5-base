@@ -20,3 +20,18 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+
+  # Decisión 1: bloquea CKV_AWS_53/54/55/56 y CKV_AWS_70 (exposición pública
+  # de comprobantes) y CKV_AWS_258 (Decisión 3, con excepción temporal en
+  # infra/lambda.tf); el resto de hallazgos de infra/ solo se informa.
+  # La política vive en .checkov.yaml.
+  iac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install checkov==3.4.5
+      - name: Checkov sobre infra/
+        run: checkov --config-file .checkov.yaml

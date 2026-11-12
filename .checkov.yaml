@@ -1,0 +1,31 @@
+# Política de Checkov para infra/ (DECISIONES.md · Decisión 1).
+#
+# Bloquea (exit code != 0): los controles que representan exposición directa
+# de los comprobantes.
+#   CKV_AWS_53  Bloqueo de ACL públicas en el bucket
+#   CKV_AWS_54  Bloqueo de políticas públicas en el bucket
+#   CKV_AWS_55  Ignorar ACL públicas en el bucket
+#   CKV_AWS_56  Restringir buckets públicos
+#   CKV_AWS_70  Política de bucket con Principal "*"
+#   CKV_AWS_258 Lambda Function URL sin autenticación (Decisión 3: tiene una
+#               excepción temporal en infra/lambda.tf; al retirarla, bloquea)
+#
+# Informa (aparece en el reporte, no bloquea): todos los demás hallazgos.
+# Al declarar solo hard-fail-on, Checkov trata cualquier otro check fallido
+# como soft fail.
+#
+# Excepciones puntuales (Decisión 3) se declaran en el recurso con
+# #checkov:skip=<ID>:<motivo, responsable, vencimiento>, nunca aquí.
+
+directory:
+  - infra
+framework:
+  - terraform
+compact: true
+hard-fail-on:
+  - CKV_AWS_53
+  - CKV_AWS_54
+  - CKV_AWS_55
+  - CKV_AWS_56
+  - CKV_AWS_70
+  - CKV_AWS_258

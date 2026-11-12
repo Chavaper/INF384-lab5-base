@@ -25,6 +25,10 @@ resource "aws_lambda_function" "api" {
 }
 
 resource "aws_lambda_function_url" "api" {
+  # Excepción temporal (DECISIONES.md · Decisión 3). Responsable: líder técnico. Vence: 11/12/2026.
+  # Condición: antes del vencimiento la API valida el token de sesión de la app móvil
+  # (en el handler o con un autorizador JWT). Si no se cumple, se elimina esta línea y CKV_AWS_258 vuelve a bloquear.
+  #checkov:skip=CKV_AWS_258:Excepcion temporal Decision 3 - app movil no firma SigV4 - responsable lider tecnico - vence 11/12/2026
   function_name      = aws_lambda_function.api.function_name
   authorization_type = "NONE"
 }
