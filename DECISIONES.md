@@ -7,7 +7,7 @@ Número de equipo: 03
 
 | Código PUCP | Nombre | Rol | Usuario de GitHub |
 |---|---|---|---|
-| | | Moderador | |
+|20220749 |Angel Cerdán CigÜeñas | Moderador |Cereal-jpg |
 |20216686 |Juan Andrés Bazán Arteaga | Escriba |JuanBa15 |
 |20203648 |Salvador Sánchez Suarez | Abogado del diablo | Chavaper |
 | 20222159| Jorge Vicente | Guardián del tiempo | Kiridas |
