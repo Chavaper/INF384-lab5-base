@@ -26,7 +26,6 @@ Exposición de datos: el bucket con 41 300 comprobantes (origen, destino, monto 
 Sin trazabilidad: el bucket no tenía registros de acceso, así que no se sabe cuántos comprobantes se descargaron ni quién los descargó.
 Negocio: el proveedor de conciliación sigue sin acceso y el contrato mantiene la penalidad por día de retraso.
 Operación: el estado real del bucket (bloqueado a mano) no coincide con el código de infra/.
->>>>>>> main
 
 ### Línea de tiempo
 
