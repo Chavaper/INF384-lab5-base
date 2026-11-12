@@ -21,10 +21,7 @@ jobs:
       - run: npm ci
       - run: npm test
 
-  # Decisión 1: bloquea CKV_AWS_53/54/55/56 y CKV_AWS_70 (exposición pública
-  # de comprobantes) y CKV_AWS_258 (Decisión 3, con excepción temporal en
-  # infra/lambda.tf); el resto de hallazgos de infra/ solo se informa.
-  # La política vive en .checkov.yaml.
+  
   iac:
     runs-on: ubuntu-latest
     steps:
@@ -35,3 +32,23 @@ jobs:
       - run: pip install checkov==3.4.5
       - name: Checkov sobre infra/
         run: checkov --config-file .checkov.yaml
+      
+  sca:
+    name: SCA - Trivy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+    
+      - name: Analizar dependencias con Trivy
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: package-lock.json
+          scanners: vuln
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+          ignore-unfixed: 'false'
