@@ -9,7 +9,7 @@ Número de equipo: 03
 |---|---|---|---|
 | | | Moderador | |
 |20216686 |Juan Andrés Bazán Arteaga | Escriba |JuanBa15 |
-| | | Abogado del diablo | |
+|20203648 |Salvador Sánchez Suarez | Abogado del diablo | Chavaper |
 | 20222159| Jorge Vicente | Guardián del tiempo | Kiridas |
 | | | Integrador | |
 
