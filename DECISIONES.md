@@ -137,3 +137,6 @@ Operación: el estado real del bucket (bloqueado a mano) no coincide con el cód
 ## Declaración de uso de IA
 
 Herramientas usadas y para qué se usó cada una:
+Durante el desarrollo del Laboratorio 5 se utilizaron ChatGPT y Claude como herramientas de apoyo.
+ChatGPT y Claude se utilizó para comprender el enunciado, analizar el caso del incidente, revisar la coherencia entre las decisiones de la Parte A y la implementación de la Parte B, interpretar los resultados de Checkov y Trivy, y recibir orientación sobre la configuración del job `sca` en el archivo `ci.yml`.
+Las herramientas de inteligencia artificial no reemplazaron el trabajo del equipo. Los integrantes revisaron el repositorio, analizaron los archivos, ejecutaron el pipeline, evaluaron los resultados y tomaron las decisiones finales. El equipo es responsable de la exactitud del contenido entregado y de los cambios realizados en el repositorio.
